@@ -1,0 +1,6 @@
+בניית הimage:
+docker build -t sdbr1234/terrorists:1.2 . ./terrorists-api-k8s
+
+העלאה לdocker hub:
+docker push sdbr1234/terrorists:1.2
+
