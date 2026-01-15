@@ -5,7 +5,7 @@ from typing import Annotated
 
 
 
-class terrorist(BaseModel):
+class Terrorist(BaseModel):
     name: str
     location: str
     danger_rate: Annotated[int, Field(
@@ -21,7 +21,6 @@ def load_data(data):
 def sort_data(df):
     sort_df = df.sort_values(by='danger_rate', ascending=False).head(5)
     return sort_df
-
 
 
 
