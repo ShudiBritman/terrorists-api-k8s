@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile
 from models import main
 
 
@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 @app.post("/top-threats/")
-async def top_threats(data):
+async def top_threats(data: UploadFile):
     top_threats = main(data)
     return top_threats
 
