@@ -1,14 +1,21 @@
 from pymongo import MongoClient
 import os
 
-db_uri = os.getenv("MONGO_HOST", "localhost")
+DB_CONFIG = {
+    "host": os.getenv("MONGO_HOST", "localhost"),
+    "port": int(os.getenv("MONGO_PORT"), "27017"),
+    "mongo_username": os.getenv("MONGO_USERNAME"),
+    "mongo_password": os.getenv("MONGO_PASSWORD"),
+    "mongo_db": os.getenv("MONGO_DB"),
+    "mongo_auth_sourse": os.getenv("MONGO_AUTH_SOURCE")
+    }
 
 class Singelton:
     _instance = None
     @staticmethod
     def get_connection_to_mongo():
         if not Singelton._instance:
-            client = MongoClient(f"mongodb://{db_uri}:27017")
+            client = MongoClient(f"mongodb://{**DB_CONFIG}")
             Singelton._instance = 1
             return client
 
@@ -16,7 +23,7 @@ class Singelton:
 class Connector:
     @staticmethod    
     def get_database(client):
-        database = client['top_threats']
+        database = client['threat_db']
         return database
     
 
@@ -41,4 +48,8 @@ def add_terrorist(terrorist_data):
     return insert_terrorist
 
 
+def add_all_terrorist(data):
+    for terrorist in data:
+        result = add_terrorist(terrorist)
+    return result
 
