@@ -2,12 +2,7 @@ from pymongo import MongoClient
 import os
 
 DB_CONFIG = {
-    "host": os.getenv("MONGO_HOST", "localhost"),
-    "port": int(os.getenv("MONGO_PORT"), "27017"),
-    "mongo_username": os.getenv("MONGO_USERNAME"),
-    "mongo_password": os.getenv("MONGO_PASSWORD"),
-    "mongo_db": os.getenv("MONGO_DB"),
-    "mongo_auth_sourse": os.getenv("MONGO_AUTH_SOURCE")
+    "host": os.getenv("MONGO_HOST", "localhost")
     }
 
 class Singelton:
@@ -15,7 +10,7 @@ class Singelton:
     @staticmethod
     def get_connection_to_mongo():
         if not Singelton._instance:
-            client = MongoClient(f"mongodb://{**DB_CONFIG}")
+            client = MongoClient(f"mongodb://{DB_CONFIG}, 27017")
             Singelton._instance = 1
             return client
 
