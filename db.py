@@ -41,4 +41,8 @@ def add_terrorist(terrorist_data):
     return insert_terrorist
 
 
+def add_all_terrorist(data):
+    for terrorist in data:
+        result = add_terrorist(terrorist)
+    return result
 

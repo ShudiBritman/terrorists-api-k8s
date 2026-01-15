@@ -1,6 +1,7 @@
 import pandas as pd
 from pydantic import BaseModel, Field
 from typing import Annotated
+from db import add_all_terrorist
 
 
 
@@ -43,6 +44,7 @@ def main(data):
     new_df = DataProcessor.abbreviated_table_builder(sort_df)
     json_df = DataProcessor.convert_to_json(new_df)
     response_json = {"count": len(json_df), "top": json_df}
+    add_all_terrorist(json_df)
     return response_json
 
 
