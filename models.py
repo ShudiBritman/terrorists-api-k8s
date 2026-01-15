@@ -42,9 +42,8 @@ def main(data):
     sort_df = DataProcessor.sort_data(df)
     new_df = DataProcessor.abbreviated_table_builder(sort_df)
     json_df = DataProcessor.convert_to_json(new_df)
-    return json_df
-
-
+    response_json = {"count": len(json_df), "top": json_df}
+    return response_json
 
 
 
