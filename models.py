@@ -23,6 +23,9 @@ def sort_data(df):
     return sort_df
 
 
+def abbreviated_table_builder(sort_df):
+    abbreviated_table: Terrorist = sort_df[['name', 'location', 'danger_rate']]
+    return abbreviated_table
 
 
 
