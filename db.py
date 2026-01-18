@@ -10,7 +10,7 @@ class Singelton:
     @staticmethod
     def get_connection_to_mongo():
         if not Singelton._instance:
-            client = MongoClient(f"mongodb://{DB_CONFIG}, 27017")
+            client = MongoClient(f"mongodb://{DB_CONFIG}: 27017")
             Singelton._instance = 1
             return client
 
