@@ -6,7 +6,7 @@ import os
 mongo_url = (
     f"mongodb://{os.environ['MONGO_USERNAME']}:"
     f"{os.environ['MONGO_PASSWORD']}@"
-    f"{os.environ['HOST_MONGO']}:"
+    f"{os.environ['MONGO_HOST']}:"
     f"{os.environ['MONGO_PORT']}/"
     f"{os.environ['MONGO_DB']}"
     f"?authSource={os.environ['MONGO_AUTH_SOURCE']}"
