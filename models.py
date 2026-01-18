@@ -1,7 +1,7 @@
 import pandas as pd
 from pydantic import BaseModel, Field
 from typing import Annotated
-#from db import add_all_terrorist
+from db import add_all_terrorist
 from fastapi import UploadFile
 import io
 import csv
@@ -45,9 +45,9 @@ class DataProcessor:
     
 
     @staticmethod
-    def convert_to_json(df):
-        df = df.to_json(orient="records")
-        return df
+    def convert_to_records(df):
+        return df.to_dict(orient="records")
+
 
 
 
@@ -55,10 +55,18 @@ def main(data):
     df = DataProcessor.load_data(data)
     sort_df = DataProcessor.sort_data(df)
     new_df = DataProcessor.abbreviated_table_builder(sort_df)
-    json_df = DataProcessor.convert_to_json(new_df)
-    response_json = {"count": len(new_df), "top": json_df}
-    #add_all_terrorist(json_df)
-    return response_json
+
+    records = DataProcessor.convert_to_records(new_df)
+    add_all_terrorist(records)
+    for doc in records:
+        doc.pop("_id", None)
+
+    return {
+        "count": len(records),
+        "top": records
+    }
+
+
 
 
 
