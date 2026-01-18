@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: threat-api
-        image: sdbr1234/terrorists:latest
+        image: sdbr1234/terrorists:3.0
         ports:
         - containerPort: 8000
         env:
