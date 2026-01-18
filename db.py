@@ -3,13 +3,15 @@ import os
 
 import os
 
+auth_source = os.getenv("MONGO_AUTH_SOURCE", "admin")
+
 mongo_url = (
     f"mongodb://{os.environ['MONGO_USERNAME']}:"
     f"{os.environ['MONGO_PASSWORD']}@"
     f"{os.environ['MONGO_HOST']}:"
     f"{os.environ['MONGO_PORT']}/"
     f"{os.environ['MONGO_DB']}"
-    f"?authSource={os.environ['MONGO_AUTH_SOURCE']}"
+    f"?authSource={auth_source}"
 )
 
 

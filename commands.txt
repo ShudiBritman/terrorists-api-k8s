@@ -1,6 +1,24 @@
 בניית הimage:
-docker build -t sdbr1234/terrorists:1.2 . ./terrorists-api-k8s
+docker build -t sdbr1234/terrorists:3.0 . ./terrorists-api-k8s
 
 העלאה לdocker hub:
-docker push sdbr1234/terrorists:1.2
+docker push sdbr1234/terrorists:3.0
 
+
+חיבור לoc:
+oc login --token=sha256~VPuqcoVl7VpMvafrtWuP0fT7-JTvzzIfz25q383bkGM --server=https://api.rm2.thpm.p1.openshiftapps.com:6443
+
+התחברות לפרויקט מסוים:
+oc project shudi-br-dev
+
+
+הרצת של הפרוייקט בoc:
+oc apply -f ./k8s
+
+חשיפה של הנתיב:
+oc expose svc threat-api-svc
+
+קבלת הקישור:
+oc get route
+
+oc get pod
